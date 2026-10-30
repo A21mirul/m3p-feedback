@@ -27,15 +27,15 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: m3p-feedback-source-v2/package-lock.json
+          cache-dependency-path: m3p-feedback-source-v3/package-lock.json
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./m3p-feedback-source-v2
+        working-directory: ./m3p-feedback-source-v3
 
       - name: Build application
         run: npm run build
-        working-directory: ./m3p-feedback-source-v2
+        working-directory: ./m3p-feedback-source-v3
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -43,7 +43,7 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./m3p-feedback-source-v2/dist
+          path: ./m3p-feedback-source-v3/dist
 
   deploy:
     environment:
