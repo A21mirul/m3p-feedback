@@ -257,3 +257,7 @@ kbd { background: #eef3fa; border: 1px solid #c9d4e4; border-radius: 6px; paddin
 
 .canvaswrap.erasing { cursor: none; touch-action: none; }
 .eraserring { position: absolute; display: none; border: 2px solid #14284b; background: rgba(255,255,255,.35); border-radius: 50%; pointer-events: none; z-index: 20; }
+
+/* discreet staff button: press and hold */
+.staffhold { position: fixed; left: 8px; bottom: 8px; z-index: 30; width: 34px; height: 34px; border-radius: 50%; border: none; background: rgba(20,40,75,.35); color: #fff; font-size: 17px; opacity: .45; padding: 0; touch-action: none; -webkit-user-select: none; user-select: none; }
+.staffhold.holding { opacity: 1; background: var(--teal); }

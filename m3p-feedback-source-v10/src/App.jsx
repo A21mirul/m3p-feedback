@@ -531,6 +531,7 @@ export default function App() {
         </div>
       )}
 
+      {screen === "wall" && !staffOpen && <StaffHold onOpen={() => setStaffOpen(true)} label={t.staffHold} />}
       {staffOpen && (
         <StaffPanel
           t={t}
@@ -541,5 +542,21 @@ export default function App() {
         />
       )}
     </div>
+  );
+}
+
+// Small faint gear on the wall: press and HOLD ~1.2 s to open the staff panel (works on touch devices without a keyboard).
+function StaffHold({ onOpen, label }) {
+  const timer = useRef(null);
+  const [holding, setHolding] = useState(false);
+  const stop = () => { clearTimeout(timer.current); setHolding(false); };
+  return (
+    <button
+      className={"staffhold" + (holding ? " holding" : "")}
+      title={label} aria-label={label}
+      onPointerDown={(e) => { e.stopPropagation(); setHolding(true); timer.current = setTimeout(() => { setHolding(false); onOpen(); }, 1200); }}
+      onPointerUp={stop} onPointerLeave={stop} onPointerCancel={stop}
+      onContextMenu={(e) => e.preventDefault()}
+    >⚙</button>
   );
 }
